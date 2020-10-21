@@ -36,7 +36,7 @@ const Sidebar: FC = () => {
           </p>
         </div>
         <div className="">
-          <img src="/icons/avatar-2.png" alt="" className=""/>
+          <img src="icons/avatar-2.png" alt="" className=""/>
         </div>
       </div>
 
