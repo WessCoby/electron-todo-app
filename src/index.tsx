@@ -1,13 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { StrictMode } from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+
 import './index.css';
 import App from './App';
+import { SidebarProvider } from './context/sidebar.context';
+import store from './store';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+
+render(
+  <StrictMode>
+    <Provider store={store}>
+      <SidebarProvider>
+        <App />
+      </SidebarProvider>
+    </Provider>
+  </StrictMode>,
   document.getElementById('root')
 );
 
