@@ -3,7 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import { object as Obj, string as Str } from 'yup';
 
 import { useAppDispatch, updateTask } from '../../../store';
-import { ReactComponent as Plus } from '../../../svg/plus.svg';
+import { ReactComponent as Save } from '../../../svg/save.svg';
 import { ReactComponent as Close } from '../../../svg/close.svg';
 
 
@@ -81,7 +81,7 @@ const UpdateTaskForm: FC<Props> = ({ id, title, onFocus, setter }) => {
               type="submit"
               disabled={!isValid || isSubmitting}
             >
-              <Plus className="w-6 h-6" />
+              <Save className="w-6 h-6" />
             </button>
             <button
               className="hover:bg-red-500 hover:text-white font-bold py-2 px-4 rounded-r text-red-500 focus:outline-none focus:shadow-outline"
