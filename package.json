@@ -1,6 +1,8 @@
 {
   "name": "electron-todo-app",
   "version": "0.1.0",
+  "author": "WessCoby <cobygiven@gmail.com>",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
@@ -23,6 +25,7 @@
     "uuid": "^8.3.1",
     "yup": "^0.29.3"
   },
+  "main": "build/index.js",
   "scripts": {
     "build:tailwind": "postcss tailwind.css -o src/index.css",
     "watch:tailwind": "postcss tailwind.css -o src/index.css --watch",
