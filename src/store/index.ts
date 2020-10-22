@@ -1,9 +1,9 @@
 import { configureStore, createSelector } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 
-import taskReducer  from './slices/tasks.slice';
-import listReducer from './slices/lists.slice';
-import activeListReducer from './slices/active.slice';
+import taskReducer, { taskActions }  from './slices/tasks.slice';
+import listReducer, { listActions } from './slices/lists.slice';
+import activeListReducer, { activeListActions } from './slices/active.slice';
 import { Task, TaskList } from '../types';
 
 
@@ -24,6 +24,13 @@ export type AppDispatch = typeof store.dispatch;
 // Dispatch
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 
+
+// Actions
+export const useAction = () => ({
+  ...taskActions,
+  ...activeListActions,
+  ...listActions
+})
 
 // Selector
 export const useSelectActive = () => useSelector(
@@ -65,16 +72,6 @@ const activeListFinder = createSelector(
 export const useSelectActiveList = () => useSelector(
   (state: RootState) => activeListFinder(state, state.active)
 )
-
-
-//! Action Creators
-export { changeActive } from './slices/active.slice';
-export {
-  createTask, removeTask, toggleCompleted, updateTask
-} from './slices/tasks.slice';
-export {
-  createList, removeList, updateList
-} from './slices/lists.slice';
 
 //! Store
 export default store;
