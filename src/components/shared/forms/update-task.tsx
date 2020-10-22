@@ -2,7 +2,7 @@ import React, { FC, useEffect, useRef } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { object as Obj, string as Str } from 'yup';
 
-import { useAppDispatch, updateTask } from '../../../store';
+import { useAppDispatch, useAction } from '../../../store';
 import { ReactComponent as Save } from '../../../svg/save.svg';
 import { ReactComponent as Close } from '../../../svg/close.svg';
 
@@ -25,6 +25,7 @@ const formSchema = Obj().shape({
 
 const UpdateTaskForm: FC<Props> = ({ id, title, onFocus, setter }) => {
   const dispatch = useAppDispatch();
+  const { updateTask } = useAction();
   const inputField = useRef<any>();
 
   useEffect(() => {
@@ -59,7 +60,7 @@ const UpdateTaskForm: FC<Props> = ({ id, title, onFocus, setter }) => {
             name="title"
             type="text"
             innerRef={(el: any) => { inputField.current = el }}
-            placeholder="Add new task"
+            placeholder={title}
             className={
               `flex-1 px-4 py-1 text-xl font-normal text-gray-900 placeholder-gray-600 rounded-l-lg focus:outline-none ${errors.title ?
                 'border-2 border-red-500 bg-red-200' :
@@ -76,7 +77,7 @@ const UpdateTaskForm: FC<Props> = ({ id, title, onFocus, setter }) => {
               className={
                 `${!isValid ?
                 'cursor-not-allowed bg-red-500 hover:bg-red-400' :
-                'hover:bg-secondary-500 hover:text-white text-secondary-500 focus:outline-none'} font-bold py-2 px-4 focus:outline-none focus:shadow-outline`
+                'transition duration-500 ease-in-out hover:bg-secondary-500 hover:text-white text-secondary-500 focus:outline-none'} font-bold py-2 px-4 focus:outline-none focus:shadow-outline`
               }
               type="submit"
               disabled={!isValid || isSubmitting}
@@ -84,7 +85,7 @@ const UpdateTaskForm: FC<Props> = ({ id, title, onFocus, setter }) => {
               <Save className="w-6 h-6" />
             </button>
             <button
-              className="hover:bg-red-500 hover:text-white font-bold py-2 px-4 rounded-r text-red-500 focus:outline-none focus:shadow-outline"
+              className="transition duration-500 ease-in-out hover:bg-red-500 hover:text-white font-bold py-2 px-4 rounded-r text-red-500 focus:outline-none focus:shadow-outline"
 
               onClick={() => {
                 setter(!onFocus);
