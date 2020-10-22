@@ -45,7 +45,7 @@ const Main: FC = () => {
           <div className={`flex w-full ${!isAddTaskMode && 'justify-end'}`}>
             {!isAddTaskMode && (
               <button
-                className="p-1 rounded-full bg-secondary-500 shadow-lg hover:bg-secondary-700 focus:outline-none focus:shadow-outline"
+                className="transition duration-700 ease-linear p-1 rounded-full bg-secondary-500 border-l-2 border-secondary-700 shadow-lg hover:bg-secondary-700 focus:outline-none focus:shadow-outline"
                 onClick={() => setAddTaskMode(true)}
               >
                 <Plus className="w-10 h-10 text-bold text-white" />
