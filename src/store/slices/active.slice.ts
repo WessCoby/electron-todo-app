@@ -3,18 +3,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { initialListData } from '../data';
 
 
-const initialState: string = initialListData[0].id;
+const initialState: string = initialListData[2].id;
 
-const { actions, reducer } = createSlice({
+const activeListSlice = createSlice({
   name: 'active',
   initialState,
   reducers: {
-    select: (_state, { payload }: PayloadAction<string>) => payload
+    changeActive: (_state, { payload }: PayloadAction<string>) => payload
   }
 })
 
-export const {
-  select: changeActive
-} = actions;
-
-export default reducer;
+export const { actions: activeListActions } = activeListSlice;
+export default activeListSlice.reducer;

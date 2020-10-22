@@ -12,11 +12,11 @@ type CreatePayload = Pick<Task, 'title' | 'listId' | 'icon'>;
 
 const initialState: Task[] = initialTaskData;
 
-const { actions, reducer } = createSlice({
+const taskSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    create: {
+    createTask: {
       reducer: (state, { payload }: PayloadAction<Task>) => {
         state.push(payload);
       },
@@ -30,19 +30,19 @@ const { actions, reducer } = createSlice({
         }
       })
     },
-    update: (state, { payload }: PayloadAction<UpdatePayload>) => {
+    updateTask: (state, { payload }: PayloadAction<UpdatePayload>) => {
       const task = state.find(task => task.id === payload.id!);
       if(task) {
         task.title = payload.title;
       }
     },
-    toggle: (state, { payload }: PayloadAction<string>) => {
+    toggleCompleted: (state, { payload }: PayloadAction<string>) => {
       const task = state.find(task => task.id === payload);
       if(task) {
         task.completed = !task.completed;
       }
     },
-    remove: (state, { payload }: PayloadAction<string>) => {
+    removeTask: (state, { payload }: PayloadAction<string>) => {
       const index = state.findIndex(task => task.id === payload);
       if(index !== -1) {
         state.splice(index, 1);
@@ -51,10 +51,5 @@ const { actions, reducer } = createSlice({
   }
 })
 
-export const {
-  create: createTask,
-  update: updateTask,
-  toggle: toggleCompleted,
-  remove: removeTask
-} = actions;
-export default reducer;
+export const { actions: taskActions } = taskSlice;
+export default taskSlice.reducer;
