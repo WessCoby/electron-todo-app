@@ -10,7 +10,7 @@ type UpdatePayload = Pick<TaskList, 'id' | 'name'>;
 
 const initialState: TaskList[] = initialListData;
 
-const { actions, reducer } = createSlice({
+const listSlice = createSlice({
   name: 'lists',
   initialState,
   reducers: {
@@ -42,11 +42,5 @@ const { actions, reducer } = createSlice({
   }
 })
 
-// Actions
-export const {
-  create: createList,
-  update: updateList,
-  remove: removeList
-} = actions;
-
-export default reducer;
+export const { actions: listActions } = listSlice;
+export default listSlice.reducer;

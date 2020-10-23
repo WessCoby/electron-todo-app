@@ -2,7 +2,7 @@ import React, { FC, useEffect, useRef } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { object as Obj, string as Str } from 'yup';
 
-import { useAppDispatch, createTask, useSelectActive } from '../../../store';
+import { useAppDispatch, useAction, useSelectActive } from '../../../store';
 import { ReactComponent as Plus } from '../../../svg/plus.svg';
 import { ReactComponent as Close } from '../../../svg/close.svg';
 
@@ -24,6 +24,7 @@ const formSchema = Obj().shape({
 const AddTaskForm: FC<Props> = ({ onFocus, setter }) => {
   const activeListId = useSelectActive();
   const dispatch = useAppDispatch();
+  const { createTask } = useAction();
   const inputField = useRef<any>();
 
   useEffect(() => {
@@ -77,7 +78,7 @@ const AddTaskForm: FC<Props> = ({ onFocus, setter }) => {
               className={
                 `${!isValid ?
                 'cursor-not-allowed bg-red-500 hover:bg-red-400' :
-                'hover:bg-secondary-500 hover:text-white text-secondary-500 focus:outline-none'} font-bold py-2 px-4 focus:outline-none focus:shadow-outline`
+                'transition duration-500 ease-in-out hover:bg-secondary-500 hover:text-white text-secondary-500 focus:outline-none'} font-bold py-2 px-4 focus:outline-none focus:shadow-outline`
               }
               type="submit"
               disabled={!isValid || isSubmitting}
@@ -85,7 +86,7 @@ const AddTaskForm: FC<Props> = ({ onFocus, setter }) => {
               <Plus className="w-6 h-6" />
             </button>
             <button
-              className="hover:bg-red-500 hover:text-white font-bold py-2 px-4 rounded-r text-red-500 focus:outline-none focus:shadow-outline"
+              className="transition duration-500 ease-in-out hover:bg-red-500 hover:text-white font-bold py-2 px-4 rounded-r text-red-500 focus:outline-none focus:shadow-outline"
 
               onClick={() => {
                 setter(!onFocus);

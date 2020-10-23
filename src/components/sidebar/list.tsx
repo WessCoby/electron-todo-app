@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import pl from 'pluralize';
 
 import {
-  useAppDispatch, changeActive, useSelectTotalTasksForList
+  useAppDispatch, useAction, useSelectTotalTasksForList
 } from '../../store';
 import { useSidebarContext } from '../../context/sidebar.context';
 import { TaskList } from '../../types';
@@ -15,6 +15,7 @@ interface Props {
 
 const List: FC<Props> = ({ data: { id, icon, name, writable } }) => {
   const dispatch = useAppDispatch();
+  const { changeActive } = useAction();
   const { setIsOpen } = useSidebarContext();
   const total = useSelectTotalTasksForList(id);
 
